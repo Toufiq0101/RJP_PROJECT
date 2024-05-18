@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Text Viewer</title>
+</head>
+<body>
+    <div id="messages"></div>
+
+    <script>
+        // Create WebSocket connection
+        const socket = new WebSocket('ws://localhost:5669/ws'); // Replace with your WebSocket server URL
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.log('WebSocket connection established.');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message received:', event.data);
+            appendMessage(event.data);
+        });
+
+        // Error handling
+        socket.addEventListener('error', function (event) {
+            console.error('WebSocket error:', event);
+        });
+
+        // Close handling
+        socket.addEventListener('close', function (event) {
+            console.log('WebSocket connection closed.');
+        });
+
+        // Function to append messages to the HTML
+        function appendMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            document.getElementById('messages').appendChild(messageElement);
+        }
+    </script>
+</body>
+</html>

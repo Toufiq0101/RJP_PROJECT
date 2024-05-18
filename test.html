@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Test</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Upload Test</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="fileInput" id="fileInput" multiple/>
+        <input type="text" name="textInput" id="textInput" placeholder="Enter text here"/>
+        <input type="text" name="textInput1" id="textInput1" placeholder="Enter text here"/>
+        <input type="text" name="textInput2" id="textInput2" placeholder="Enter text here"/>
+        <button type="button" onclick="uploadFiles()">Upload</button>
+    </form>
+    <div id="response"></div>
+
+    <script>
+        function uploadFiles(e) {
+            
+            const fileInput = document.getElementById("fileInput");
+            const files = fileInput.files;
+            console.log(files)
+            if (!files.length) {
+                alert("Please select at least one file.");
+                return;
+            }
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                formData.append("files", file);
+            }
+            const textInput = document.getElementById("textInput").value;
+            const textInput1 = document.getElementById("textInput1").value;
+            const textInput2 = document.getElementById("textInput2").value;
+            formData.append("textInputs", textInput);
+            formData.append("textInputs", textInput1);
+            // formData.append("textInputs", textInput2);
+            console.log(textInput2)
+            console.log("fetch is called")
+
+            // fetch("http://127.0.0.1:5666/upload/", {
+            //     method: "POST",
+            //     body: formData,
+            // })
+            // .then((response) => console.log(response))
+            // .then((data) => {
+            //     const responseDiv = document.getElementById("response");
+            //     let message = "";
+            //     console.log(data)
+            //     // data.forEach((result) => {
+            //     //     message += `<p>${result.status || result.error}</p>`;
+            //     // });
+            //     // responseDiv.innerHTML = message;
+            // })
+            // .catch((error) => {
+            //     console.error("Error:", error);
+            // });
+            // console.log("fetch is end")
+        }
+    </script>
+</body>
+</html>

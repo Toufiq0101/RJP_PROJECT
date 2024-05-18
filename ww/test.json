@@ -1,0 +1,19 @@
+GET
+{
+    "data":{
+        "search_loc" : ["loc"],
+        "auth_id" : "AUTH_ID"
+    },
+    "response" :{
+        [
+            {
+                "DVR_loc":"LOCATION[NAME]",
+                "Associated Cameras":"No. of Cameras[List of all camera Coords]",
+                "Owenership":"Private/Govt.",
+                "owner_name": "name",
+                "DVR_id":"id",
+                "DVR_status":"ON/OFF",                
+            }
+        ]
+    }
+}
